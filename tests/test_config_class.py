@@ -10,8 +10,6 @@ import operator
 
 
 class TestConfig(object):
-    def __init__(self):
-        pass
 
     @classmethod
     def setup_class(cls):

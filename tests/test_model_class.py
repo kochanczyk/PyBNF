@@ -8,8 +8,6 @@ import re
 
 
 class TestModel:
-    def __init__(self):
-        pass
 
     @classmethod
     def setup_class(cls):

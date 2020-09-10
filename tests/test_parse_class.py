@@ -3,8 +3,6 @@ from .context import parse
 
 
 class TestParse:
-    def __init__(self):
-        pass
 
     @classmethod
     def setup_class(cls):

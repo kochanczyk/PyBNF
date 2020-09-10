@@ -15,8 +15,6 @@ import numpy as np
 
 
 class TestJob(object):
-    def __init__(self):
-        pass
 
     @classmethod
     def setup_class(cls):

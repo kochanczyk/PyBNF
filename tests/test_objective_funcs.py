@@ -5,8 +5,6 @@ from nose.tools import raises
 
 
 class TestObjectiveFunctions:
-    def __init__(self):
-        pass
 
     @classmethod
     def setup_class(cls):
