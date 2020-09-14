@@ -3,7 +3,7 @@
 
 from .data import Data, DuplicateColumnError
 from .objective import ChiSquareObjective, SumOfSquaresObjective, NormSumOfSquaresObjective, \
-    AveNormSumOfSquaresObjective, SumOfDiffsObjective
+    AveNormSumOfSquaresObjective, SumOfDiffsObjective, SumOfLogDiffsObjective, SumOfLogDiffSquaresObjective
 
 from .pset import BNGLModel, ModelError, SbmlModel, SbmlModelNoTimeout, FreeParameter, TimeCourse, ParamScan, \
     Mutation, MutationSet
@@ -575,9 +575,13 @@ class Configuration(object):
             return AveNormSumOfSquaresObjective(self.config['ind_var_rounding'])
         elif self.config['objfunc'] == 'sod':
             return SumOfDiffsObjective(self.config['ind_var_rounding'])
+        elif self.config['objfunc'] == 'sold':
+            return SumOfLogDiffsObjective(self.config['ind_var_rounding'])
+        elif self.config['objfunc'] == 'sols':
+            return SumOfLogDiffSquaresObjective(self.config['ind_var_rounding'])
         raise UnknownObjectiveFunctionError("Objective function %s not defined" % self.config['objfunc'],
               "Objective function %s is not defined. Valid objective function choices are: "
-              "chi_sq, sos, sod, norm_sos, ave_norm_sos" % self.config['objfunc'])
+              "chi_sq, sos, sod, norm_sos, ave_norm_sos, sold, sols" % self.config['objfunc'])
 
     def _load_variables(self):
         """
@@ -644,6 +648,7 @@ class Configuration(object):
         if len(extra_in_model) > 0:
             raise PybnfError('The following free parameters are in your model files, but are not declared in your '
                              '.conf file: %s' % extra_in_model)
+
 
     def _postprocess_normalization(self):
         """

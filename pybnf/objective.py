@@ -263,6 +263,32 @@ class AveNormSumOfSquaresObjective(SummationObjective):
         return ((sim_val - exp_val) / self.aves[col_name]) ** 2.
 
 
+class SumOfLogDiffsObjective(SummationObjective):
+    """
+    Sum of absolute log-differences.
+    """
+    def eval_point(self, sim_data, exp_data, sim_row, exp_row, col_name):
+        sim_val = sim_data.data[sim_row, sim_data.cols[col_name]]
+        exp_val = exp_data.data[exp_row, exp_data.cols[col_name]]
+        log_sim_val = np.log10(np.fabs(sim_val))
+        log_exp_val = np.log10(np.fabs(exp_val))
+        z = abs(log_sim_val - log_exp_val)
+        return z
+
+
+class SumOfLogDiffSquaresObjective(SummationObjective):
+    """
+    Sum of squares of log-differences.
+    """
+    def eval_point(self, sim_data, exp_data, sim_row, exp_row, col_name):
+        sim_val = sim_data.data[sim_row, sim_data.cols[col_name]]
+        exp_val = exp_data.data[exp_row, exp_data.cols[col_name]]
+        log_sim_val = np.log10(np.fabs(sim_val))
+        log_exp_val = np.log10(np.fabs(exp_val))
+        z = (log_sim_val - log_exp_val)**2.
+        return z
+
+
 class ConstraintCounter(ObjectiveFunction):
     """
     An objective function that just counts the numbered of failed constraints

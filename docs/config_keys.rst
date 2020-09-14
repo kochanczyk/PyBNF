@@ -42,18 +42,20 @@ Required Keys
 **objfunc**
   Which :ref:`objective function <objective>` to use. 
   
-   - ``chi_sq`` - Chi squared
-   - ``sos`` - Sum of squares
-   - ``sod`` - Sum of differences
-   - ``norm_sos`` - Sum of squares, normalized by the value at each point,
+   - ``chi_sq`` - Chi squared.
+   - ``sos`` - Sum of squares.
+   - ``sod`` - Sum of differences.
+   - ``norm_sos`` - Sum of squares, normalized by the value at each point.
    - ``ave_norm_sos`` - Sum of squares, normalized by the average value of the variable. 
-   
+   - ``sold`` - Sum of (absolute) log-differences.
+   - ``sols`` - Sum of squares of log-differences.
+
   Default: chi_sq
   
   Example:
   
     * ``objfunc = chi_sq``
-   
+
 
 **population_size**
   The number parameter sets to maintain in a single iteration of the algorithm. See algorithm descriptions for more
